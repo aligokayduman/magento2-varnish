@@ -15,8 +15,8 @@ RUN apt-get update -y \
 
 ADD start.sh /start.sh
 
-ENV VCL_CONFIG      /etc/varnish/default.vcl
-ENV CACHE_SIZE      64m
+ENV VCL_CONFIG /etc/varnish/default.vcl
+ENV CACHE_SIZE 64m
 ENV VARNISHD_PARAMS -p default_ttl=86400 -p default_grace=86400
 
 EXPOSE 80
