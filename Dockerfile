@@ -14,6 +14,7 @@ RUN apt-get update -y \
     && apt-get install -y varnish
 
 ADD start.sh /start.sh
+RUN chmod +x /start.sh
 
 ENV VCL_CONFIG /etc/varnish/default.vcl
 ENV CACHE_SIZE 64m
