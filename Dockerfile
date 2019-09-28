@@ -2,15 +2,16 @@ FROM ubuntu:xenial
 
 MAINTAINER A. Gökay Duman <smyrnof@gmail.com>
 
-RUN apt update
-RUN apt install -y curl
-RUN curl -L https://packagecloud.io/varnishcache/varnish5/gpgkey | apt-key add -
-RUN apt install -y debian-archive-keyring
-RUN mkdir -p /etc/apt/sources.list.d
-RUN echo "deb-src https://packagecloud.io/varnishcache/varnish5/ubuntu/ xenial  main" /etc/apt/sources.list.d/varnishcache_varnish5.list
-RUN echo "deb https://packagecloud.io/varnishcache/varnish5/ubuntu/ xenial main" /etc/apt/sources.list.d/varnishcache_varnish5.list
-RUN apt update
-RUN apt install varnish
+RUN apt-get update -y \
+    && apt-get install -y apt-utils \
+    && apt install -y curl \
+    && curl -L https://packagecloud.io/varnishcache/varnish5/gpgkey | apt-key add - \
+    && apt-get install -y debian-archive-keyring
+    && mkdir -p /etc/apt/sources.list.d
+    && echo "deb-src https://packagecloud.io/varnishcache/varnish5/ubuntu/ xenial  main" /etc/apt/sources.list.d/varnishcache_varnish5.list
+    && echo "deb https://packagecloud.io/varnishcache/varnish5/ubuntu/ xenial main" /etc/apt/sources.list.d/varnishcache_varnish5.list
+    && apt-get update -y
+    && apt-get install -y varnish
 
 ADD start.sh /start.sh
 
