@@ -3,9 +3,9 @@ FROM ubuntu:xenial
 MAINTAINER A. Gökay Duman <smyrnof@gmail.com>
 
 RUN apt update
-RUN apt install curl
+RUN apt install -y curl
 RUN curl -L https://packagecloud.io/varnishcache/varnish5/gpgkey | apt-key add -
-RUN apt-get install debian-archive-keyring
+RUN apt install -y debian-archive-keyring
 RUN mkdir -p /etc/apt/sources.list.d
 RUN echo "deb-src https://packagecloud.io/varnishcache/varnish5/ubuntu/ xenial  main" /etc/apt/sources.list.d/varnishcache_varnish5.list
 RUN echo "deb https://packagecloud.io/varnishcache/varnish5/ubuntu/ xenial main" /etc/apt/sources.list.d/varnishcache_varnish5.list
